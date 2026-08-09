@@ -85,37 +85,37 @@ export const Home = () => {
                 {/* Sección Inferior: Noticias / Info */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
                     {/* Card 1 */}
-                    <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 flex items-start gap-4 hover:shadow-lg transition-shadow group">
+                    <Link to="/vaccines-panel" className="group bg-white rounded-2xl shadow-md border border-slate-100 p-6 flex items-start gap-4 hover:shadow-lg transition-shadow no-underline">
                         <div className="p-3 bg-blue-50 text-secondary rounded-xl group-hover:bg-secondary group-hover:text-white transition-colors">
                             <Syringe size={24} />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-800 text-lg">Nuevas Vacunas</h4>
-                            <p className="text-sm text-slate-500 mt-1 leading-relaxed">Dosis de refuerzo disponibles para adultos mayores.</p>
+                            <h4 className="font-bold text-slate-800 text-lg">Vacunas disponibles</h4>
+                            <p className="text-sm text-slate-500 mt-1 leading-relaxed">Consulta el catálogo público de biológicos aprobados.</p>
                         </div>
-                    </div>
+                    </Link>
 
                     {/* Card 2 */}
-                    <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 flex items-start gap-4 hover:shadow-lg transition-shadow group">
+                    <Link to="/calendar" className="group bg-white rounded-2xl shadow-md border border-slate-100 p-6 flex items-start gap-4 hover:shadow-lg transition-shadow no-underline">
                         <div className="p-3 bg-blue-50 text-secondary rounded-xl group-hover:bg-secondary group-hover:text-white transition-colors">
                             <Info size={24} />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-800 text-lg">Aviso Oficial</h4>
-                            <p className="text-sm text-slate-500 mt-1 leading-relaxed">Mensaje del Secretario de Salud estatal sobre esquemas.</p>
+                            <h4 className="font-bold text-slate-800 text-lg">Calendario de campañas</h4>
+                            <p className="text-sm text-slate-500 mt-1 leading-relaxed">Revisa la programación activa de campañas de vacunación.</p>
                         </div>
-                    </div>
+                    </Link>
 
                     {/* Card 3 */}
-                    <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 flex items-start gap-4 hover:shadow-lg transition-shadow group">
+                    <Link to="/centers" className="group bg-white rounded-2xl shadow-md border border-slate-100 p-6 flex items-start gap-4 hover:shadow-lg transition-shadow no-underline">
                         <div className="p-3 bg-blue-50 text-secondary rounded-xl group-hover:bg-secondary group-hover:text-white transition-colors">
                             <MapPin size={24} />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-800 text-lg">Unidad Médica</h4>
-                            <p className="text-sm text-slate-500 mt-1 leading-relaxed">Módulo de atención habilitado en la zona centro.</p>
+                            <h4 className="font-bold text-slate-800 text-lg">Centros de salud</h4>
+                            <p className="text-sm text-slate-500 mt-1 leading-relaxed">Encuentra los centros médicos activos cerca de ti.</p>
                         </div>
-                    </div>
+                    </Link>
                 </div>
 
             </main>

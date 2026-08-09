@@ -192,10 +192,9 @@ export const UsersPage = () => {
 
   const filteredUsers = users.filter((user) => {
     const term = searchTerm.toLowerCase();
-    const name = user.name ? user.name.toLowerCase() : "";
     const email = user.email ? user.email.toLowerCase() : "";
     const role = user.role ? user.role.toLowerCase() : "";
-    return name.includes(term) || email.includes(term) || role.includes(term);
+    return email.includes(term) || role.includes(term);
   });
 
   useEffect(() => {
@@ -259,8 +258,6 @@ export const UsersPage = () => {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50/70 border-b border-slate-100 text-slate-500 font-bold text-xs uppercase tracking-wider">
-                  {/* Cambiado de ID Cuenta a Nombre Completo */}
-                  <th className="p-4 pl-6">Nombre Completo</th>
                   <th className="p-4">Correo Electrónico</th>
                   <th className="p-4 text-center">Rol de Accesos</th>
                   <th className="p-4 text-center">Estatus</th>
@@ -273,11 +270,9 @@ export const UsersPage = () => {
                     key={user.id}
                     className="hover:bg-slate-50/80 transition-colors"
                   >
-                    {/* Reemplazado el ID en mono por el Nombre con estilo destacado */}
                     <td className="p-4 pl-6 font-semibold text-slate-800">
-                      {user.name || "Sin registrar"}
+                      {user.email ?? "-"}
                     </td>
-                    <td className="p-4 text-slate-600">{user.email}</td>
                     <td className="p-4 text-center">
                       <span
                         className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase ${
@@ -290,7 +285,6 @@ export const UsersPage = () => {
                       </span>
                     </td>
                     <td className="p-4 text-center">
-                      {/* Estatus adaptado a español e indicador dinámico de color */}
                       <span
                         className={`px-3 py-1 rounded-full text-white text-xs font-bold tracking-wide uppercase shadow-sm ${
                           user.status === "inactive" ||

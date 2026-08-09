@@ -15,7 +15,10 @@ import { HealthCentersPage } from "./pages/HealthCentersPage";
 import { VaccinesPage } from "./pages/VaccinesPage.jsx";
 import { CartillaPage } from "./pages/CartillaPage.jsx";
 import { Campaigns } from "./pages/Campaigns";
- 
+import { PublicVaccines } from "./pages/PublicVaccines";
+import { PublicHealthCenters } from "./pages/PublicHealthCenters";
+import { PublicCampaigns } from "./pages/PublicCampaigns";
+
 function App() {
   const checkAuth = useAuthStore((state) => state.checkAuth);
   const isChecking = useAuthStore((state) => state.isChecking);
@@ -34,6 +37,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/vaccines-panel" element={<PublicVaccines />} />
+        <Route path="/centers" element={<PublicHealthCenters />} />
+        <Route path="/calendar" element={<PublicCampaigns />} />
 
         {/* Rutas Protegidas (Envueltas por el componente Cadenero) */}
         <Route element={<ProtectedRoute />}>

@@ -46,7 +46,7 @@ export const Navbar = () => {
             <Link to="/" className="hover:text-blue-300 transition-colors" onClick={() => setIsMenuOpen(false)}>
               Inicio
             </Link>
-            <Link to="/vaccines" className="hover:text-blue-300 transition-colors" onClick={() => setIsMenuOpen(false)}>
+            <Link to="/vaccines-panel" className="hover:text-blue-300 transition-colors" onClick={() => setIsMenuOpen(false)}>
               Vacunas
             </Link>
             <Link to="/calendar" className="hover:text-blue-300 transition-colors" onClick={() => setIsMenuOpen(false)}>
