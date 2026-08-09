@@ -24,7 +24,7 @@ export const ForgotPassword = () => {
       Swal.fire({
         icon: "success",
         title: "Correo enviado",
-        text: "Si el correo existe en nuestro sistema, recibirás instrucciones para restablecer tu contraseña.",
+        text: "Te enviamos un enlace para restablecer tu contraseña. Si no lo ves, revisa tu carpeta de spam.",
         confirmButtonColor: "#1e3a8a",
       });
     } catch (err) {
