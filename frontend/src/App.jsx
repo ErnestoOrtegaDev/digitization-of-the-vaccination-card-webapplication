@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuthStore } from "./store/authStore";
 
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { ResetPassword } from "./pages/ResetPassword";
+
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
@@ -28,7 +31,11 @@ function App() {
   }, [checkAuth]);
 
   if (isChecking) {
-    return <div className="flex h-screen items-center justify-center">Cargando...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        Cargando...
+      </div>
+    );
   }
   return (
     <BrowserRouter>
@@ -40,6 +47,8 @@ function App() {
         <Route path="/vaccines-panel" element={<PublicVaccines />} />
         <Route path="/centers" element={<PublicHealthCenters />} />
         <Route path="/calendar" element={<PublicCampaigns />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Rutas Protegidas (Envueltas por el componente Cadenero) */}
         <Route element={<ProtectedRoute />}>

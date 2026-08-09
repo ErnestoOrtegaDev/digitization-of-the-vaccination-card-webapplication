@@ -1,7 +1,18 @@
 import express from "express";
-import { register, login, logout, refreshToken } from "../controllers/auth.controller.js";
+import {
+  register,
+  login,
+  logout,
+  refreshToken,
+  forgotPassword,
+  resetPassword,
+} from "../controllers/auth.controller.js";
 import { verifyToken, requireRole } from "../middlewares/auth.middleware.js";
 import { encodeId } from "../utils/hashids.js";
+import {
+  authLimiter,
+  passwordResetLimiter,
+} from "../middlewares/rateLimit.middleware.js";
 
 const router = express.Router();
 
@@ -29,7 +40,7 @@ const router = express.Router();
  *       '201':
  *         description: Usuario registrado exitosamente
  */
-router.post("/register", register);
+router.post("/register", authLimiter, register);
 
 /**
  * @swagger
@@ -52,7 +63,7 @@ router.post("/register", register);
  *       '200':
  *         description: Autenticación exitosa
  */
-router.post("/login", login);
+router.post("/login", authLimiter, login);
 
 /**
  * @swagger
@@ -111,5 +122,51 @@ router.get("/me", verifyToken, (req, res) => {
 });
 
 router.post("/refresh", refreshToken);
+
+/**
+ * @swagger
+ * /api/v1/auth/forgot-password:
+ *   post:
+ *     summary: Solicita el envío de un correo para restablecer la contraseña
+ *     tags: [Autenticación]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: Instrucciones enviadas (respuesta genérica exista o no el correo)
+ */
+router.post("/forgot-password", passwordResetLimiter, forgotPassword);
+
+/**
+ * @swagger
+ * /api/v1/auth/reset-password:
+ *   post:
+ *     summary: Restablece la contraseña usando un token de un solo uso
+ *     tags: [Autenticación]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               token:
+ *                 type: string
+ *               newPassword:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: Contraseña actualizada correctamente
+ *       '400':
+ *         description: Token inválido o expirado
+ */
+router.post("/reset-password", authLimiter, resetPassword);
 
 export default router;

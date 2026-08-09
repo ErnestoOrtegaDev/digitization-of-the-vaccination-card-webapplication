@@ -5,7 +5,6 @@
  */
 
 import express from "express";
-import { createClient } from "redis";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -26,6 +25,8 @@ import dashboardRoutes from "./routes/dashboard.routes.js";
 import searchRoutes from "./routes/search.routes.js";
 import campaignRoutes from "./routes/campaign.routes.js";
 
+import redisClient from "./config/redis.js";
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -42,18 +43,6 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-
-/**
- * Cliente de conexión para Redis.
- * Manejará sesiones, OTPs temporales y caché de lectura.
- */
-const redisClient = createClient({
-  url: `redis://${process.env.REDIS_HOST || "vacunapp-redis"}:6379`,
-});
-
-redisClient.on("error", (err) =>
-  console.error("[Redis] Error de conexión:", err),
-);
 
 /* ==========================================================================
    Definición de Rutas
@@ -140,8 +129,8 @@ const startServer = async () => {
   } catch (error) {
     console.error("[Sistema] Error crítico durante la inicialización:", error);
     if (error && error.stack) {
-    console.error(error.stack);
-  }
+      console.error(error.stack);
+    }
     process.exit(1);
   }
 };
